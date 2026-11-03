@@ -1,0 +1,30 @@
+\begin{table}[htb!]
+\centering
+\small
+\caption{Numerical verification of the exact Siler series. The value column reports the series to four decimal places; adaptive quadrature gives the same displayed values. The absolute difference compares the series, stopped at an absolute truncation tolerance of $10^{-12}$ years, with adaptive quadrature. The final column is the analytic bound on the omitted series tail. Values below $10^{-16}$ are printed as $<10^{-16}$. Differences can exceed the bound because they also include the numerical error of the special-function routine and of the quadrature, which the bound does not cover.}
+\label{tab:numerical-verification}
+\begin{tabular}{rrrrr}
+\toprule
+Year & Age & Value & Absolute difference & Analytic bound \\
+\midrule
+1920 & 0 & 61.9301 & $2.70\times 10^{-13}$ & $2.64\times 10^{-13}$ \\
+1920 & 30 & 40.8116 & $2.13\times 10^{-14}$ & $<10^{-16}$ \\
+1920 & 60 & 17.0874 & $1.42\times 10^{-14}$ & $<10^{-16}$ \\
+1940 & 0 & 69.0828 & $<10^{-16}$ & $1.59\times 10^{-13}$ \\
+1940 & 30 & 42.4986 & $4.97\times 10^{-14}$ & $<10^{-16}$ \\
+1940 & 60 & 16.7587 & $9.95\times 10^{-14}$ & $<10^{-16}$ \\
+1960 & 0 & 75.1118 & $9.95\times 10^{-14}$ & $3.09\times 10^{-15}$ \\
+1960 & 30 & 46.2970 & $2.42\times 10^{-13}$ & $<10^{-16}$ \\
+1960 & 60 & 18.8274 & $5.79\times 10^{-13}$ & $<10^{-16}$ \\
+1980 & 0 & 78.7106 & $7.11\times 10^{-14}$ & $4.57\times 10^{-14}$ \\
+1980 & 30 & 49.4873 & $8.74\times 10^{-13}$ & $<10^{-16}$ \\
+1980 & 60 & 21.5061 & $8.88\times 10^{-14}$ & $<10^{-16}$ \\
+2000 & 0 & 81.7100 & $8.38\times 10^{-13}$ & $1.22\times 10^{-14}$ \\
+2000 & 30 & 52.1381 & $8.88\times 10^{-13}$ & $<10^{-16}$ \\
+2000 & 60 & 23.5945 & $1.08\times 10^{-12}$ & $<10^{-16}$ \\
+2020 & 0 & 83.9384 & $7.11\times 10^{-13}$ & $1.92\times 10^{-16}$ \\
+2020 & 30 & 54.3252 & $4.55\times 10^{-13}$ & $<10^{-16}$ \\
+2020 & 60 & 25.3299 & $2.91\times 10^{-13}$ & $<10^{-16}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
