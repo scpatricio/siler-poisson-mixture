@@ -59,18 +59,18 @@ benchmark_curves$year_label = factor(
   benchmark_curves$year,
   levels = analysis_config$benchmark_years
 )
-plot_theme = ggplot2::theme_minimal(base_size = 11) +
+plot_theme = ggplot2::theme_minimal(base_size = 12) +
   ggplot2::theme(
     panel.grid.minor = ggplot2::element_blank(),
     panel.grid.major = ggplot2::element_line(color = "#E5E5E5", linewidth = 0.3),
-    strip.text = ggplot2::element_text(face = "bold"),
+    strip.text = ggplot2::element_text(face = "italic", size = 11),
     panel.spacing = grid::unit(1.1, "lines"),
     axis.title = ggplot2::element_text(face = "plain"),
     legend.position = "bottom",
     legend.title = ggplot2::element_blank(),
+    legend.text = ggplot2::element_text(size = 10.6),
     plot.title.position = "plot",
-    plot.title = ggplot2::element_text(face = "bold", size = 14),
-    plot.subtitle = ggplot2::element_text(size = 10.5, color = "#3F3F3F"),
+    plot.title = ggplot2::element_text(face = "bold", size = 15),
     plot.margin = ggplot2::margin(10, 12, 8, 10)
   )
 
@@ -113,7 +113,6 @@ figure_mortality_fit = ggplot2::ggplot() +
   ) +
   ggplot2::labs(
     title = "Siler mortality fits for Swedish females",
-    subtitle = "Observed death rates and Poisson maximum-likelihood fits",
     x = "Age (years)",
     y = "Mortality rate, log scale",
   ) +
@@ -242,7 +241,6 @@ figure_remaining_life = ggplot2::ggplot(
   ggplot2::scale_x_continuous(breaks = seq(1900, 2020, by = 20)) +
   ggplot2::labs(
     title = "Siler remaining life expectancy in Sweden, 1900-2020",
-    subtitle = "HMD values and fitted Siler values for Swedish females",
     x = "Year",
     y = NULL
   ) +
@@ -354,7 +352,7 @@ age_scale = ggplot2::scale_x_continuous(
 approximation_panel_theme = plot_theme +
   ggplot2::theme(
     legend.position = "none",
-    plot.title = ggplot2::element_text(face = "bold", size = 10.5, hjust = 0.5),
+    plot.title = ggplot2::element_text(face = "italic", size = 11, hjust = 0.5),
     plot.margin = ggplot2::margin(3, 5, 3, 5)
   )
 
@@ -452,9 +450,9 @@ approximation_legend = extract_plot_legend(figure_age_absolute_difference)
 draw_age_approximation_figure = function() {
   grid::grid.newpage()
   figure_layout = grid::grid.layout(
-    nrow = 4L,
+    nrow = 3L,
     ncol = 2L,
-    heights = grid::unit(c(0.09, 0.07, 0.74, 0.10), "npc"),
+    heights = grid::unit(c(0.09, 0.81, 0.10), "npc"),
     widths = grid::unit(rep(1, 2), "null")
   )
   grid::pushViewport(grid::viewport(layout = figure_layout))
@@ -462,22 +460,8 @@ draw_age_approximation_figure = function() {
     "Accuracy of the truncated Siler series by attained age",
     x = grid::unit(0.01, "npc"),
     just = "left",
-    gp = grid::gpar(fontsize = 14, fontface = "bold"),
+    gp = grid::gpar(fontsize = 15, fontface = "bold"),
     vp = grid::viewport(layout.pos.row = 1L, layout.pos.col = 1:2)
-  )
-  grid::grid.text(
-    substitute(
-      paste(
-        "Swedish females, ", year,
-        "; omitted-tail errors below ", 10^-50,
-        " are not displayed"
-      ),
-      list(year = performance_year)
-    ),
-    x = grid::unit(0.01, "npc"),
-    just = "left",
-    gp = grid::gpar(fontsize = 10.5, col = "#3F3F3F"),
-    vp = grid::viewport(layout.pos.row = 2L, layout.pos.col = 1:2)
   )
   panel_plots = list(
     figure_age_absolute_difference,
@@ -485,20 +469,20 @@ draw_age_approximation_figure = function() {
   )
   for (column in seq_along(panel_plots)) {
     grid::pushViewport(
-      grid::viewport(layout.pos.row = 3L, layout.pos.col = column)
+      grid::viewport(layout.pos.row = 2L, layout.pos.col = column)
     )
     grid::grid.draw(ggplot2::ggplotGrob(panel_plots[[column]]))
     grid::popViewport()
   }
   grid::pushViewport(
-    grid::viewport(layout.pos.row = 4L, layout.pos.col = 1:2)
+    grid::viewport(layout.pos.row = 3L, layout.pos.col = 1:2)
   )
   grid::grid.draw(approximation_legend)
   grid::popViewport()
   grid::popViewport()
 }
 
-save_figure = function(plot, stem, width = 7.2, height = 5.6) {
+save_figure = function(plot, stem, width = 9, height = 5) {
   ggplot2::ggsave(
     filename = file.path(figure_directory, paste0(stem, ".pdf")),
     plot = plot,
@@ -509,11 +493,11 @@ save_figure = function(plot, stem, width = 7.2, height = 5.6) {
   )
 }
 
-save_figure(figure_remaining_life, "figure_remaining_life", width = 10.5, height = 7.5)
+save_figure(figure_remaining_life, "figure_remaining_life", width = 9, height = 8)
 grDevices::cairo_pdf(
   filename = file.path(figure_directory, "figure_series_convergence.pdf"),
-  width = 10.5,
-  height = 5.2
+  width = 9,
+  height = 5
 )
 draw_age_approximation_figure()
 grDevices::dev.off()

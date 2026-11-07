@@ -160,29 +160,23 @@ appendix_figure = ggplot2::ggplot(
   ) +
   ggplot2::labs(
     title = "Maximum fixed-m approximation differences by age",
-    subtitle = expression(
-      paste(
-        "Maximum at each age across Swedish female mortality schedules, ",
-        "1900-2020; values below ", 10^-50, " are not displayed"
-      )
-    ),
     x = "Age",
     y = NULL
   ) +
   ggplot2::guides(
     color = ggplot2::guide_legend(nrow = 1L, byrow = TRUE)
   ) +
-  ggplot2::theme_minimal(base_size = 11) +
+  ggplot2::theme_minimal(base_size = 12) +
   ggplot2::theme(
     panel.grid.minor = ggplot2::element_blank(),
     panel.grid.major = ggplot2::element_line(color = "#E5E5E5", linewidth = 0.3),
-    strip.text = ggplot2::element_text(face = "bold"),
+    strip.text = ggplot2::element_text(face = "italic", size = 11),
     panel.spacing = grid::unit(1.1, "lines"),
     legend.position = "bottom",
     legend.title = ggplot2::element_blank(),
+    legend.text = ggplot2::element_text(size = 10.6),
     plot.title.position = "plot",
-    plot.title = ggplot2::element_text(face = "bold", size = 14),
-    plot.subtitle = ggplot2::element_text(size = 10.5, color = "#3F3F3F"),
+    plot.title = ggplot2::element_text(face = "bold", size = 15),
     plot.margin = ggplot2::margin(10, 12, 8, 10)
   )
 
@@ -194,8 +188,8 @@ ggplot2::ggsave(
     "figure_maximum_approximation_difference.pdf"
   ),
   plot = appendix_figure,
-  width = 10.5,
-  height = 5.2,
+  width = 9,
+  height = 5,
   units = "in",
   device = grDevices::cairo_pdf
 )

@@ -45,16 +45,16 @@ log_sum_exp_three = function(x1, x2, x3) {
 
 siler_log_hazard = function(age, eta) {
   theta = theta_from_eta(eta)
-  log_juvenile = eta["a1"] - theta["b1"] * age
+  log_immaturity = eta["a1"] - theta["b1"] * age
   log_background = rep(eta["a2"], length(age))
   log_senescent = eta["a3"] + theta["b3"] * age
-  log_sum_exp_three(log_juvenile, log_background, log_senescent)
+  log_sum_exp_three(log_immaturity, log_background, log_senescent)
 }
 
 siler_hazard_components = function(age, theta) {
   data.frame(
     age = age,
-    juvenile = theta["a1"] * exp(-theta["b1"] * age),
+    immaturity = theta["a1"] * exp(-theta["b1"] * age),
     background = rep(theta["a2"], length(age)),
     senescent = theta["a3"] * exp(theta["b3"] * age),
     check.names = FALSE
@@ -63,7 +63,7 @@ siler_hazard_components = function(age, theta) {
 
 siler_hazard = function(age, theta) {
   components = siler_hazard_components(age, theta)
-  components$juvenile + components$background + components$senescent
+  components$immaturity + components$background + components$senescent
 }
 
 siler_nll = function(eta, age, deaths, exposure) {

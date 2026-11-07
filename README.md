@@ -2,13 +2,26 @@
 
 Code and data to reproduce the results in
 
-> Patricio, S. C. *Siler remaining life expectancy as a Poisson mixture of
-> Gompertz–Makeham life expectancies.* Submitted to *Theoretical Population
-> Biology*.
+> Patricio, S. C. (2026). An exact Poisson mixture representation of Siler
+> remaining life expectancy. *arXiv:2611.06376*.
+> <https://doi.org/10.48550/arXiv.2611.06376>
 
-The paper shows that remaining life expectancy under the Siler mortality
-model is a Poisson mixture of Gompertz–Makeham remaining life expectancies.
-The mixture gives an exact series of generalized exponential integrals with a
+```bibtex
+@article{patricio2026siler,
+  title   = {An Exact Poisson Mixture Representation of {Siler} Remaining Life Expectancy},
+  author  = {Patricio, Silvio C.},
+  journal = {arXiv preprint arXiv:2611.06376},
+  year    = {2026},
+  doi     = {10.48550/arXiv.2611.06376}
+}
+```
+
+The paper shows that the remaining-lifetime distribution under the Siler
+mortality model is Gompertz–Makeham with a Poisson-distributed Makeham term.
+A latent-clock construction explains the representation: individuals carry a
+Poisson number of constant-rate clocks, and selection removes those carrying
+more clocks first. Integrating the mixture gives an exact series of
+generalized exponential integrals for remaining life expectancy with a
 closed-form truncation bound, and a two-sided bound on the life expectancy
 lost to immaturity mortality. The application fits the Siler model to Swedish
 female mortality, 1900–2020.
@@ -73,6 +86,7 @@ tables/                            LaTeX table
 | `data/derived/sweden_siler_fit_summary.csv` | Estimated Siler parameters and convergence diagnostics by year |
 | `data/derived/sweden_siler_life_expectancy.csv` | Series, partial sums, quadrature and HMD values at ages 0, 30 and 60 |
 | `data/derived/sweden_siler_immaturity_loss.csv` | Loss to immaturity mortality at birth and its bounds, by year |
+| `data/derived/sweden_siler_immaturity_decomposition.csv` | Numbers reported in Section 5.1: loss at birth, cause-deleted decomposition of the gain in e0, and accuracy of the leading term |
 | `data/derived/sweden_siler_maximum_approximation_differences.csv` | Maximum truncation error by age and number of terms |
 | `data/derived/sweden_siler_quadrature_check.csv` | Values reported in the verification table |
 | `data/derived/sweden_siler_results.rds` | All fitted results, read by scripts 02–04 |
